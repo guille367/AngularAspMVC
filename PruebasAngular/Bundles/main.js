@@ -149,16 +149,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! angular-in-memory-web-api */ "./node_modules/angular-in-memory-web-api/index.js");
-/* harmony import */ var _in_memory_data_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./in-memory-data.service */ "./src/app/in-memory-data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
 
 
 
@@ -186,7 +182,6 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
-                angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_10__["HttpClientInMemoryWebApiModule"].forRoot(_in_memory_data_service__WEBPACK_IMPORTED_MODULE_11__["InMemoryDataService"], { dataEncapsulation: false })
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -217,7 +212,7 @@ module.exports = "[class*='col-'] {\r\n  float: left;\r\n  padding-right: 20px;\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Top heroes</h3>\r\n<div class=\"grid grid-pad\">\r\n  <a *ngFor=\"let hero of heroes\" class=\"col-1-4\">\r\n    <div class=\"module heroes\">\r\n      <h4>{{hero.name}}</h4>\r\n    </div>\r\n  </a>\r\n</div>\r\n"
+module.exports = "<h3>Top heroes</h3>\r\n<div class=\"grid grid-pad\">\r\n  <a *ngFor=\"let hero of heroes\" class=\"col-1-4\">\r\n    <div class=\"module heroes\">\r\n      <h4>{{hero.name}}</h4>\r\n    </div>\r\n  </a>\r\n</div>\r\n\r\n<button (click)=\"pruebaService()\">Botoneá</button>\r\n"
 
 /***/ }),
 
@@ -255,6 +250,13 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.ngOnInit = function () {
         this.getHeroes();
+    };
+    DashboardComponent.prototype.pruebaService = function () {
+        this.heroService.getPrueba()
+            .subscribe(function (data) {
+            debugger;
+            console.log(data);
+        });
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -402,6 +404,14 @@ var HeroService = /** @class */ (function () {
         return this.http.get(this.heroesUrl + "/" + id)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (_) { return _this.log("fetched hero id = " + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError('getHeroById')));
     };
+    HeroService.prototype.getPrueba = function () {
+        var params = { page: 1, pageSize: 10, pageCount: 0 };
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpParams"]()
+            .set('filtro.page', '12')
+            .set('filtro.pageCount', '122')
+            .set('FAFA', '122');
+        return this.http.get('/Home/GetData', { params: httpParams });
+    };
     HeroService.prototype.log = function (message) {
         this.messageService.add("HeroService: " + message);
     };
@@ -494,58 +504,6 @@ var HeroesComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_hero_service__WEBPACK_IMPORTED_MODULE_1__["HeroService"]])
     ], HeroesComponent);
     return HeroesComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/in-memory-data.service.ts":
-/*!*******************************************!*\
-  !*** ./src/app/in-memory-data.service.ts ***!
-  \*******************************************/
-/*! exports provided: InMemoryDataService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InMemoryDataService", function() { return InMemoryDataService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var InMemoryDataService = /** @class */ (function () {
-    function InMemoryDataService() {
-    }
-    InMemoryDataService.prototype.createDb = function () {
-        var HEROES = [
-            { id: 11, name: 'Mr. Nice' },
-            { id: 12, name: 'Narco' },
-            { id: 13, name: 'Bombasto' },
-            { id: 14, name: 'Celeritas' },
-            { id: 15, name: 'Magneta' },
-            { id: 16, name: 'RubberMan' },
-            { id: 17, name: 'Dynama' },
-            { id: 18, name: 'Dr IQ' },
-            { id: 19, name: 'Magma' },
-            { id: 20, name: 'Tornado' }
-        ];
-        return { HEROES: HEROES };
-    };
-    InMemoryDataService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [])
-    ], InMemoryDataService);
-    return InMemoryDataService;
 }());
 
 

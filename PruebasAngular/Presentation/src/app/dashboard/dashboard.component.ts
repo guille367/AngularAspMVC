@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { RecepcionResponse } from './recepcion';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes()
+  }
+
+  pruebaService() {
+    this.heroService.getPrueba()
+      .subscribe((data: RecepcionResponse) => {
+        debugger;
+        console.log(data)
+      })
   }
 
 }

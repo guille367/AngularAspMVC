@@ -16,8 +16,6 @@ var messages_component_1 = require("./messages/messages.component");
 var app_routing_module_1 = require(".//app-routing.module");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var http_1 = require("@angular/common/http");
-var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
-var in_memory_data_service_1 = require("./in-memory-data.service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -35,7 +33,6 @@ var AppModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
-                angular_in_memory_web_api_1.HttpClientInMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService, { dataEncapsulation: false })
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

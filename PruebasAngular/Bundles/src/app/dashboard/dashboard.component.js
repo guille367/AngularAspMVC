@@ -23,6 +23,13 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.ngOnInit = function () {
         this.getHeroes();
     };
+    DashboardComponent.prototype.pruebaService = function () {
+        this.heroService.getPrueba()
+            .subscribe(function (data) {
+            debugger;
+            console.log(data);
+        });
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'app-dashboard',

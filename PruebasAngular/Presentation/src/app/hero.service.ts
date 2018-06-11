@@ -3,7 +3,8 @@ import { Hero } from './hero';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { RecepcionSearchInput, RecepcionResponse } from './dashboard/recepcion';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,16 @@ export class HeroService {
       tap(_ => this.log(`fetched hero id = ${id}`)),
       catchError(this.handleError<Hero>('getHeroById'))
       )
+  }
+
+  getPrueba() {
+    const params: RecepcionSearchInput = { page: 1, pageSize: 10, pageCount: 0 }
+    var httpParams = new HttpParams()
+    .set('filtro.page', '12')
+    .set('filtro.pageCount', '122')
+    .set('FAFA', '122')
+    
+    return this.http.get<RecepcionResponse>('/Home/GetData', { params: httpParams })
   }
 
   private log(message: string) {

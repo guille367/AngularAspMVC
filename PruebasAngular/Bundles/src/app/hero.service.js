@@ -31,6 +31,14 @@ var HeroService = /** @class */ (function () {
         return this.http.get(this.heroesUrl + "/" + id)
             .pipe(operators_1.tap(function (_) { return _this.log("fetched hero id = " + id); }), operators_1.catchError(this.handleError('getHeroById')));
     };
+    HeroService.prototype.getPrueba = function () {
+        var params = { page: 1, pageSize: 10, pageCount: 0 };
+        var httpParams = new http_1.HttpParams()
+            .set('filtro.page', '12')
+            .set('filtro.pageCount', '122')
+            .set('FAFA', '122');
+        return this.http.get('/Home/GetData', { params: httpParams });
+    };
     HeroService.prototype.log = function (message) {
         this.messageService.add("HeroService: " + message);
     };
